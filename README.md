@@ -67,6 +67,8 @@ This project aims to cater to owners of small—to medium-sized takeaway restaur
 ![Entity Relationship Diagram](docs_images/erd.png)
 I created my ERD diagram using Lucidchart, it represents the database structure for the MVP version of the project which consists of all the must-have user stories. I decided not to include the default User model in my ERD as this is declared by Django and is subject to change in newer releases.
 
+[Lucidchart ERD Document](https://lucid.app/lucidchart/513e4c27-842a-4319-9b4e-faada636017d/edit?invitationId=inv_195ab741-b650-4ba0-a9ee-729f737c8205)
+
 ### Wireframes
 [<img src="docs_images/wireframes/mobile.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/mobile.png)
 [<img src="docs_images/wireframes/tablet.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/tablet.png)
