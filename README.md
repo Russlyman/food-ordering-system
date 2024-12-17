@@ -1,14 +1,15 @@
-# Project Title
+# Food Ordering System
 
 ## Overview
 
 ### Purpose
-A brief description of the project's purpose, what it aims to achieve, and the value it provides to the users.  
-**Guidance:** Begin filling out this section during Phase 1: Ideation & Initial Setup. Clearly articulate the main goal of your project, what it aims to achieve, and how it will provide value to your target audience.
+The primary function of this project is to allow a takeaway restaurant to accept orders over the Internet. This is facilitated by enabling customers to see all available menu items, select the items they wish to order by adding them to their basket, and then place their order. The restaurant can view the order and fulfil it.
+
+This system has many advantages over the more traditional method of taking orders over the phone which can be susceptible to miscommunication, the inability to take multiple orders and once and the lack of being able to take secure payment.
+
 
 ### Target Audience
-Identify the target audience for your website and explain why this audience will benefit from the project.  
-**Guidance:** Use this section to identify who will benefit from your project and why. This should be informed by your user stories and overall project objectives.
+This project aims to cater to owners of small—to medium-sized takeaway restaurants who are not currently taking orders over the Internet or using a mainstream app and are looking to reduce costs or have an existing solution that does not suffice.
 
 ## User Stories
 
