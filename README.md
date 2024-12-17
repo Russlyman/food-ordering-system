@@ -77,10 +77,6 @@ Here are the wireframes I created for this project using Balsamiq Wireframes, I 
 
 [Balsamiq Wireframes File](docs_images/wireframes/wireframe.bmpr)
 
-Include wireframes for key sections of your website.  
-Briefly describe the design choices, including layout, colour schemes, and fonts.  
-**Guidance:** Start this section during Phase 1: Ideation & Initial Setup and update it throughout Phase 2 and Phase 3. Include digital wireframes created in Phase 1. Document the reasoning behind your layout choices, colour schemes, and font selections.
-
 ### Accessibility Considerations
 Discuss how accessibility guidelines were adhered to, including colour contrast and alt text for images.  
 **Guidance:** Outline how you've incorporated accessibility into your design, ensuring that your project adheres to guidelines such as WCAG.
