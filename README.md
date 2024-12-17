@@ -71,7 +71,9 @@ I created my ERD diagram using Lucidchart, it represents the database structure 
 [<img src="docs_images/wireframes/mobile.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/mobile.png)
 [<img src="docs_images/wireframes/tablet.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/tablet.png)
 [<img src="docs_images/wireframes/desktop.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/desktop.png)
-Here are the wireframes I created for this project using Balsamiq Wireframes, I created them using a mobile-first approach. To see a larger view of each wireframe, please click each wireframe to open a full-sized image in a new tab.
+Here are the wireframes I created for this project using Balsamiq Wireframes, I created them using a mobile-first approach. To see a larger view of each wireframe, please click each wireframe to open a full-sized image.
+
+[Balsamiq Wireframes File](docs_images/wireframes/wireframe.bmpr)
 
 Include wireframes for key sections of your website.  
 Briefly describe the design choices, including layout, colour schemes, and fonts.  
