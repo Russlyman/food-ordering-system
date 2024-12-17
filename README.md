@@ -68,6 +68,11 @@ This project aims to cater to owners of small—to medium-sized takeaway restaur
 I created my ERD diagram using Lucidchart, it represents the database structure for the MVP version of the project which consists of all the must-have user stories. I decided not to include the default User model in my ERD as this is declared by Django and is subject to change in newer releases.
 
 ### Wireframes
+[<img src="docs_images/wireframes/mobile.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/mobile.png)
+[<img src="docs_images/wireframes/tablet.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/tablet.png)
+[<img src="docs_images/wireframes/desktop.png" alt="Mobile wireframe" width="32%"/>](docs_images/wireframes/desktop.png)
+Here are the wireframes I created for this project using Balsamiq Wireframes, I created them using a mobile-first approach. To see a larger view of each wireframe, please click each wireframe to open a full-sized image in a new tab.
+
 Include wireframes for key sections of your website.  
 Briefly describe the design choices, including layout, colour schemes, and fonts.  
 **Guidance:** Start this section during Phase 1: Ideation & Initial Setup and update it throughout Phase 2 and Phase 3. Include digital wireframes created in Phase 1. Document the reasoning behind your layout choices, colour schemes, and font selections.
