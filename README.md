@@ -41,6 +41,10 @@ Identify the target audience for your website and explain why this audience will
 
 ## Design Decisions
 
+### Entity Relationship Diagram
+![Entity Relationship Diagram](docs_images/erd.png)
+I created my ERD diagram using Lucidchart, it represents the database structure for the MVP version of the project which consists of all the must-have user stories. I decided not to include the default User model in my ERD as this is declared by Django and is subject to change in newer releases.
+
 ### Wireframes
 Include wireframes for key sections of your website.  
 Briefly describe the design choices, including layout, colour schemes, and fonts.  
