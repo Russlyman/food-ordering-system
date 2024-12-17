@@ -14,31 +14,52 @@ This project aims to cater to owners of small—to medium-sized takeaway restaur
 ## User Stories
 
 ### Must-Have User Stories
-- **User Story 1:** Briefly describe the must-have feature.  
-  **Acceptance Criteria:** List the criteria that define the successful implementation of this user story.
-- **User Story 2:** Briefly describe the must-have feature.  
-  **Acceptance Criteria:** List the criteria that define the successful implementation of this user story.
+- **User Story 1:** As a customer I can see a list of menu items so that I can decide what I want to eat
 
-(Include all prioritized must-have features)  
-**Guidance:** Draft the user stories during Phase 1: Ideation & Initial Setup and update them as you complete Phase 2: Must User Stories Implementation & Testing. Document each must-have feature here along with its acceptance criteria.
+  **Acceptance Criteria:**
+    - Database model created for storing food items and another for categories.
+    - Name and price of each food item is displayed.
+    - Food items are group by their category.
+- **User Story 2:** As a customer I can add and remove items from my basket so that I can declare what items I want to order
+
+  **Acceptance Criteria:**
+    - Items can be added or removed from the basket.
+    - Basket total price and total quantity are displayed.
+    - Items with multiple quantities are grouped together.
+- **User Story 3:** As a customer I can place an order using the contents of my basket so that the restaurant can prepare my food
+
+  **Acceptance Criteria:**
+    - Name, Email and Phone Number Fields
+    - Order number is displayed on completion
+    - Collection or delivery radio
+- **User Story 4:** As an employee I can view all the placed orders so that I can prepare them for the customer
+
+  **Acceptance Criteria:**
+    - List of all placed orders
+    - Show time order was placed and order info
+    - Dismiss button
 
 ### Should-Have User Stories
-- **User Story 1:** Briefly describe the should-have feature.  
-  **Acceptance Criteria:** List the criteria that define the successful implementation of this user story.
-- **User Story 2:** Briefly describe the should-have feature.  
-  **Acceptance Criteria:** List the criteria that define the successful implementation of this user story.
+- **User Story 1:** As a customer I can specify special instructions for each item in the basket so that I can inform the restaurant of any changes they need to make
 
-(Include all prioritized should-have features)  
-**Guidance:** Document the secondary features that you aim to implement in Phase 3: Should User Stories Implementation & Any Advanced Features. Include clear acceptance criteria for each.
+  **Acceptance Criteria:**
+    - Special instructions field for each item and overall order.
+- **User Story 2:** As a customer I can search for items so that I can save time if I have an exact item in mind
+
+  **Acceptance Criteria:**
+    - Search box that provides immediate feedback as customer types
+- **User Story 3:** As a customer I can jump down the menu by category so that save time by not scrolling
+
+  **Acceptance Criteria:**
+    - Sidebar containing all the category names
+    - Clicking a category name scrolls to that category
 
 ### Could-Have User Stories
-- **User Story 1:** Briefly describe the could-have feature.  
-  **Acceptance Criteria:** List the criteria that define the successful implementation of this user story.
-- **User Story 2:** Briefly describe the could-have feature.  
-  **Acceptance Criteria:** List the criteria that define the successful implementation of this user story.
+- **User Story 1:** As a customer I can pay by card so that I can pay over the Internet as an alternative to cash
 
-(Include any could-have features considered for future enhancements)  
-**Guidance:** Document any optional features that are nice to have but not essential.
+  **Acceptance Criteria:**
+    - Card option in checkout
+    - Order is marked as placed once payment has been received
 
 ## Design Decisions
 
