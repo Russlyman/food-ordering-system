@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-russlyman-foodorderings-e1g3n5z55mu.ws.codeinstitute-ide.net', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com', 'http://localhost']
 
 # Application definition
 
