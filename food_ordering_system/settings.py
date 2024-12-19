@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ze!%3gff&pzu1xk%r*o4$$shh)rmtxq9r3s5dya&(ygt73hz@9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-russlyman-foodorderings-e1g3n5z55mu.ws.codeinstitute-ide.net', 'localhost']
+ALLOWED_HOSTS = ['8000-russlyman-foodorderings-e1g3n5z55mu.ws.codeinstitute-ide.net', 'rje-food-ordering-system-e7aa385812ff.herokuapp.com', 'localhost']
 
 CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com', 'http://localhost']
 
