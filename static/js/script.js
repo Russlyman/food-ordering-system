@@ -11,6 +11,7 @@ if (exampleModal) {
 
     const modalTitle = exampleModal.querySelector('.modal-title')
     const modalPrice = exampleModal.querySelector('.modal-price')
+    
     const modalDescription = exampleModal.querySelector('.modal-description')
     const modalDescriptionWrapper = exampleModal.querySelector('.modal-description-wrapper')
 
