@@ -6,12 +6,12 @@ if (exampleModal) {
   exampleModal.addEventListener('show.bs.modal', event => {
     const menuItem = event.relatedTarget
     const menuItemName = menuItem.querySelector(".item-name").innerText
-    const menuItemPrice = menuItem.querySelector(".item-price").innerText
+    const menuItemPrice = menuItem.getAttribute('data-item-price')
     const menuItemDescription = menuItem.getAttribute('data-item-description')
 
     const modalTitle = exampleModal.querySelector('.modal-title')
     const modalPrice = exampleModal.querySelector('.modal-price')
-    
+
     const modalDescription = exampleModal.querySelector('.modal-description')
     const modalDescriptionWrapper = exampleModal.querySelector('.modal-description-wrapper')
 

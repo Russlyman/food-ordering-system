@@ -21,8 +21,8 @@
           <div class="row g-2">
             {% for item in category.items.all %}
             <div class="col-sm-6">
-              <div class="p-3 border bg-light d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#itemInfoModal" data-item-description="{{ item.description }}">
-                <span class="item-name">{{ item.name }}</span><span class="item-price">{{ item.price }}</span>
+              <div class="p-3 border bg-light d-flex justify-content-between" data-bs-toggle="modal" data-bs-target="#itemInfoModal" data-item-description="{{ item.description }}" data-item-price="{{ item.price }}">
+                <span class="item-name">{{ item.name }}</span><span>{{ item.price }}</span>
               </div>
             </div>
             {% endfor %}
