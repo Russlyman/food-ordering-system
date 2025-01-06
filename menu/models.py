@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
@@ -41,16 +42,21 @@ class Order(models.Model):
 
 
 class ItemOrder(models.Model):
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="items"
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="items")
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="orders")
+    quantity = models.IntegerField(
+        default=1,
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(10),
+        ],
     )
-    item = models.ForeignKey(
-        Item, on_delete=models.CASCADE, related_name="orders"
-    )
-    quantity = models.IntegerField(default=1)
 
     class Meta:
         verbose_name_plural = "ItemOrders"
+        constraints = [
+            models.UniqueConstraint(fields=['order', 'item'], name='unique_order_item')
+        ]
 
     def __str__(self):
         return f"Order {self.order.id} - {self.order.user.username} - {self.item.name}"
