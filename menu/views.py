@@ -10,5 +10,5 @@ def menu_list(request):
     return render(
         request,
         "menu/menu_list.html",
-        {"categories": categories},
+        {"categories": categories, "currency_symbol": "£"},
     )
