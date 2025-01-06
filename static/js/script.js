@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const exampleModal = document.getElementById('itemInfoModal');
   const exampleModalBody = document.getElementById('itemInfoModalBody');
+  const quantityForm = document.getElementById("quantityForm");
 
   const modalTotal = document.querySelector('.modal-total');
   let menuItemPrice = 0
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       menuItemPrice = menuItem.getAttribute('data-item-price');
       const menuItemDescription = menuItem.getAttribute('data-item-description');
       const menuItemQuantity = menuItem.getAttribute('data-item-quantity');
+      const menuItemId = menuItem.getAttribute('data-item-id');
 
       const modalTitle = exampleModal.querySelector('.modal-title');
       const modalPrice = exampleModal.querySelector('.modal-price');
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
       modalDescription.innerText = menuItemDescription;
       modalQuantity.value = menuItemQuantity === "0" ? Number(menuItemQuantity + 1) : menuItemQuantity;
       calcTotal();
+      quantityForm.setAttribute("action", `basket_quantity/${menuItemId}`)
     });
   }
 })

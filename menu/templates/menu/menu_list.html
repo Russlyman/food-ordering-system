@@ -28,7 +28,8 @@
                 data-item-description="{{ item.description }}"
                 data-item-price="{{ item.price }}"
                 data-item-name="{{ item.name }}"
-                data-item-quantity="1">
+                data-item-quantity="1"
+                data-item-id="{{ item.id }}">
                   <span>{{ item.name }}</span>
                   <span>{{ currency_symbol }}{{ item.price }}</span>
               </div>
@@ -53,10 +54,11 @@
         <p>Price: {{ currency_symbol }}<span class="modal-price">Item Price Value</span></p>
         <p class="modal-description-wrapper d-none">Description: <span class="modal-description">Item Description Value</span></p>
       </div>
-      <div class="modal-footer d-flex justify-content-between">
-        <input class="modal-quantity" type="number" min="1" max="10" value="1">
-        <button type="button" class="btn btn-primary">{{ currency_symbol }}<span class="modal-total">Item Total Value</span> - Add to basket</button>
-      </div>
+      <form id="quantityForm" class="modal-footer d-flex justify-content-between" method="POST">
+        <input name="quantity" class="modal-quantity" type="number" min="1" max="10" value="1">
+        <button type="submit" class="btn btn-primary">{{ currency_symbol }}<span class="modal-total">Item Total Value</span> - Add to basket</button>
+        {% csrf_token %}
+      </form>
     </div>
   </div>
 </div>

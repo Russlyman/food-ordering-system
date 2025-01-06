@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.db.models import Count
 from .models import Category
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def menu_list(request):
@@ -12,3 +13,7 @@ def menu_list(request):
         "menu/menu_list.html",
         {"categories": categories, "currency_symbol": "£"},
     )
+
+def basket_quantity(request, item_id):
+    print(item_id, request.POST["quantity"])
+    return HttpResponseRedirect(reverse('home'))
