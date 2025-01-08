@@ -83,27 +83,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Normalise search query.
     const searchQuery = e.target.value.toLowerCase().replaceAll(' ', '');
 
-    for (let item of allItems) {
-      // Normalise item name.
-      const searchItemName = item
-        .getAttribute('data-item-name')
-        .toLowerCase()
-        .replaceAll(' ', '');
-
-      // Hide of show item if it matches search criteria.
-      if (searchItemName.includes(searchQuery)) {
-        item.parentElement.classList.remove('d-none');
-      } else {
-        item.parentElement.classList.add('d-none');
-      }
-    }
-
     for (let category of allCategories) {
       // Count items that are showing in this category.
       let showingItems = 0;
       for (let item of category.children) {
-        if (!item.classList.contains("d-none")) {
+        // Normalise item name.
+        item = item.firstElementChild
+        const searchItemName = item
+          .getAttribute('data-item-name')
+          .toLowerCase()
+          .replaceAll(' ', '');
+
+        // Hide of show item if it matches search criteria.
+        if (searchItemName.includes(searchQuery)) {
+          item.parentElement.classList.remove('d-none');
           showingItems++;
+        } else {
+          item.parentElement.classList.add('d-none');
         }
       }
 
