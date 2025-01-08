@@ -1,7 +1,6 @@
 // Custom JS Here
 document.addEventListener('DOMContentLoaded', function () {
   const exampleModal = document.getElementById('itemInfoModal');
-  const exampleModalBody = document.getElementById('itemInfoModalBody');
   const quantityForm = document.getElementById('quantityForm');
 
   // Getting the elements on the modal.
@@ -14,13 +13,16 @@ document.addEventListener('DOMContentLoaded', function () {
   );
 
   let menuItemPrice = 0;
+  let menuItemQuantity = 0;
   const modalTotal = document.querySelector('.modal-total');
   const modalQuantity = document.querySelector('.modal-quantity');
 
   // Calculates item total after considering quantity.
   function calcTotal() {
     // Bring quantity back into acceptable range.
-    if (modalQuantity.value < 1) {
+    if (modalQuantity.value <= 0 && menuItemQuantity > 0) {
+      modalQuantity.value = 0;
+    } else if (modalQuantity.value < 1) {
       modalQuantity.value = 1;
     } else if (modalQuantity.value > 10) {
       modalQuantity.value = 10;
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const menuItemDescription = menuItem.getAttribute(
         'data-item-description'
       );
-      const menuItemQuantity = menuItem.getAttribute('data-item-quantity');
+      menuItemQuantity = menuItem.getAttribute('data-item-quantity');
       const menuItemId = menuItem.getAttribute('data-item-id');
       const menuItemImage = menuItem.getAttribute('data-item-image');
 
@@ -74,6 +76,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Update the total cost of an item after considering quantity.
       calcTotal();
+
+      // Items that are already in the basket can be set to a quantity of 0 to remove them.
+      if (menuItemQuantity > 0) {
+        modalQuantity.setAttribute("min", "0");
+      } else {
+        modalQuantity.setAttribute("min", "1");
+      }
 
       // Change form action to item specific value.
       quantityForm.setAttribute('action', `basket_quantity/${menuItemId}`);
