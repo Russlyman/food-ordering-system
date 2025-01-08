@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const exampleModalBody = document.getElementById('itemInfoModalBody');
   const quantityForm = document.getElementById('quantityForm');
 
+  // Getting the elements on the modal.
+  const modalTitle = exampleModal.querySelector('.modal-title');
+  const modalPrice = exampleModal.querySelector('.modal-price');
+  const modalImage = exampleModal.querySelector('.modal-image');
+  const modalDescription = exampleModal.querySelector('.modal-description');
+  const modalDescriptionWrapper = exampleModal.querySelector(
+    '.modal-description-wrapper'
+  );
+
   let menuItemPrice = 0;
   const modalTotal = document.querySelector('.modal-total');
   const modalQuantity = document.querySelector('.modal-quantity');
@@ -38,17 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const menuItemId = menuItem.getAttribute('data-item-id');
       const menuItemImage = menuItem.getAttribute('data-item-image');
 
-      // Getting the elements on the modal.
-      const modalTitle = exampleModal.querySelector('.modal-title');
-      const modalPrice = exampleModal.querySelector('.modal-price');
-      const modalImage = exampleModal.querySelector('.modal-image');
-      const modalDescription = exampleModal.querySelector('.modal-description');
-      const modalDescriptionWrapper = exampleModal.querySelector(
-        '.modal-description-wrapper'
-      );
-
-      // Hide item description if these is none.
+      // Set description if exists.
       if (menuItemDescription) {
+        modalDescription.innerText = menuItemDescription;
         modalDescriptionWrapper.classList.remove('d-none');
       } else {
         modalDescriptionWrapper.classList.add('d-none');
@@ -57,10 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
       // Set item details on the modal.
       modalTitle.innerText = menuItemName;
       modalPrice.innerText = menuItemPrice;
-      modalDescription.innerText = menuItemDescription;
 
       // Set image if present.
-      if (menuItemImage.includes("placeholder")) {
+      if (menuItemImage.includes('placeholder')) {
         modalImage.classList.add('d-none');
       } else {
         modalImage.setAttribute('src', menuItemImage);
@@ -78,44 +78,5 @@ document.addEventListener('DOMContentLoaded', function () {
       // Change form action to item specific value.
       quantityForm.setAttribute('action', `basket_quantity/${menuItemId}`);
     });
-  }
-
-  const allCategories = document.querySelectorAll('.menu-category');
-  const searchBox = document.querySelector('.search-box');
-
-  // Run the search function when stuff is entered in search box.
-  searchBox.addEventListener('input', searchItems);
-
-  function searchItems(e) {
-    // Normalise search query.
-    const searchQuery = e.target.value.toLowerCase().replaceAll(' ', '');
-
-    for (let category of allCategories) {
-      // Count items that are showing in this category.
-      let showingItems = 0;
-      for (let item of category.children) {
-        // Normalise item name.
-        item = item.firstElementChild;
-        const searchItemName = item
-          .getAttribute('data-item-name')
-          .toLowerCase()
-          .replaceAll(' ', '');
-
-        // Hide of show item if it matches search criteria.
-        if (searchItemName.includes(searchQuery)) {
-          item.parentElement.classList.remove('d-none');
-          showingItems++;
-        } else {
-          item.parentElement.classList.add('d-none');
-        }
-      }
-
-      // Hide or show this category depending on if it has items.
-      if (showingItems === 0) {
-        category.parentElement.classList.add('d-none');
-      } else {
-        category.parentElement.classList.remove('d-none');
-      }
-    }
   }
 });
