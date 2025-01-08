@@ -59,22 +59,38 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   const allItems = document.querySelectorAll('.menu-item');
+  const allCategories = document.querySelectorAll('.menu-category');
   const searchBox = document.querySelector('.search-box');
   searchBox.addEventListener('input', searchItems);
 
   function searchItems(e) {
     const searchQuery = e.target.value.toLowerCase().replaceAll(' ', '');
-  
+
     for (let item of allItems) {
       const searchItemName = item
         .getAttribute('data-item-name')
         .toLowerCase()
         .replaceAll(' ', '');
-  
+
       if (searchItemName.includes(searchQuery)) {
         item.parentElement.classList.remove('d-none');
       } else {
         item.parentElement.classList.add('d-none');
+      }
+    }
+
+    for (let category of allCategories) {
+      let showingItems = 0;
+      for (let item of category.children) {
+        if (!item.classList.contains("d-none")) {
+          showingItems++;
+        }
+      }
+
+      if (showingItems === 0) {
+        category.parentElement.classList.add('d-none')
+      } else {
+        category.parentElement.classList.remove('d-none')
       }
     }
   }
