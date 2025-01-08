@@ -25,13 +25,14 @@
             {% for item in category.items.all %}
             <div class="col-sm-6">
               <div 
-                class="p-3 border bg-light d-flex justify-content-between menu-item"
+                class="p-3 border bg-light d-flex justify-content-between"
                 data-bs-toggle="modal"
                 data-bs-target="#itemInfoModal"
                 data-item-description="{{ item.description }}"
                 data-item-price="{{ item.price }}"
                 data-item-name="{{ item.name }}"
                 data-item-quantity="0"
+                data-item-image="{{ item.image.url }}"
                 data-item-id="{{ item.id }}">
                   <span>{{ item.name }}</span>
                   <span>{{ currency_symbol }}{{ item.price }}</span>
@@ -54,6 +55,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="itemInfoModalBody">
+        <img class="modal-image w-100 d-none" src="" alt="Item Image">
         <p>Price: {{ currency_symbol }}<span class="modal-price">Item Price Value</span></p>
         <p class="modal-description-wrapper d-none">Description: <span class="modal-description">Item Description Value</span></p>
       </div>

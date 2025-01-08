@@ -36,10 +36,12 @@ document.addEventListener('DOMContentLoaded', function () {
       );
       const menuItemQuantity = menuItem.getAttribute('data-item-quantity');
       const menuItemId = menuItem.getAttribute('data-item-id');
+      const menuItemImage = menuItem.getAttribute('data-item-image');
 
       // Getting the elements on the modal.
       const modalTitle = exampleModal.querySelector('.modal-title');
       const modalPrice = exampleModal.querySelector('.modal-price');
+      const modalImage = exampleModal.querySelector('.modal-image');
       const modalDescription = exampleModal.querySelector('.modal-description');
       const modalDescriptionWrapper = exampleModal.querySelector(
         '.modal-description-wrapper'
@@ -57,13 +59,19 @@ document.addEventListener('DOMContentLoaded', function () {
       modalPrice.innerText = menuItemPrice;
       modalDescription.innerText = menuItemDescription;
 
+      // Set image if present.
+      if (menuItemImage.includes("placeholder")) {
+        modalImage.classList.add('d-none');
+      } else {
+        modalImage.setAttribute('src', menuItemImage);
+        modalImage.setAttribute('alt', `Photo of ${menuItemName}`);
+        modalImage.classList.remove('d-none');
+      }
+
       // Set item quantity.
       // 0 quantity means user hasn't added item to basket, change to 1 as they anticipate adding this item.
-      modalQuantity.value =
-        menuItemQuantity === '0'
-          ? '1'
-          : menuItemQuantity;
-      
+      modalQuantity.value = menuItemQuantity === '0' ? '1' : menuItemQuantity;
+
       // Update the total cost of an item after considering quantity.
       calcTotal();
 
@@ -72,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  const allItems = document.querySelectorAll('.menu-item');
   const allCategories = document.querySelectorAll('.menu-category');
   const searchBox = document.querySelector('.search-box');
 
@@ -88,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let showingItems = 0;
       for (let item of category.children) {
         // Normalise item name.
-        item = item.firstElementChild
+        item = item.firstElementChild;
         const searchItemName = item
           .getAttribute('data-item-name')
           .toLowerCase()
@@ -105,9 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Hide or show this category depending on if it has items.
       if (showingItems === 0) {
-        category.parentElement.classList.add('d-none')
+        category.parentElement.classList.add('d-none');
       } else {
-        category.parentElement.classList.remove('d-none')
+        category.parentElement.classList.remove('d-none');
       }
     }
   }
