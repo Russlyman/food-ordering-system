@@ -1,6 +1,7 @@
 // Custom JS Here
 document.addEventListener('DOMContentLoaded', function () {
   const exampleModal = document.getElementById('itemInfoModal');
+  const modal = new bootstrap.Modal('#itemInfoModal');
   const quantityForm = document.getElementById('quantityForm');
 
   // Getting the elements on the modal.
@@ -28,28 +29,44 @@ document.addEventListener('DOMContentLoaded', function () {
       modalQuantity.value = 10;
     }
 
-    const quantityPrice = (menuItemPrice * modalQuantity.value).toFixed(2)
+    // 2dp please :)
+    const quantityPrice = (menuItemPrice * modalQuantity.value).toFixed(2);
 
-    modalSubmit.classList.remove("btn-danger")
-    modalSubmit.classList.remove("btn-warning")
-    modalSubmit.classList.remove("btn-success")
+    // Remove all classes before we get started.
+    modalSubmit.classList.remove('btn-danger');
+    modalSubmit.classList.remove('btn-primary');
+    modalSubmit.classList.remove('btn-warning');
+    modalSubmit.classList.remove('btn-success');
 
+    // Change button text and style depending on quantity set.
     if (modalQuantity.value == 0) {
-      modalSubmit.innerText = "Remove from basket";
-      modalSubmit.classList.add("btn-danger")
+      modalSubmit.innerText = 'Remove from basket';
+      modalSubmit.classList.add('btn-danger');
+    } else if (menuItemQuantity == modalQuantity.value) {
+      modalSubmit.innerText = 'Close';
+      modalSubmit.classList.add('btn-primary');
     } else if (menuItemQuantity > 0) {
-      modalSubmit.innerText = `£${quantityPrice} - Modify basket`;
-      modalSubmit.classList.add("btn-warning")
+      modalSubmit.innerText = `£${quantityPrice} - Change quantity`;
+      modalSubmit.classList.add('btn-warning');
     } else {
       modalSubmit.innerText = `£${quantityPrice} - Add to basket`;
-      modalSubmit.classList.add("btn-success")
+      modalSubmit.classList.add('btn-success');
     }
-
-    // 2dp please :)
   }
 
   // Recalculate item total when user changes quantity.
   modalQuantity.addEventListener('change', calcTotal);
+
+  function handleSubmit(e) {
+    // Do not submit form if quantity is the same as quantity in basket.
+    if (menuItemQuantity == modalQuantity.value) {
+      e.preventDefault();
+      modal.hide();
+    }
+  }
+
+  // Handle form submits.
+  quantityForm.addEventListener('submit', handleSubmit);
 
   if (exampleModal) {
     // When the modal is opened do this...
@@ -95,9 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Items that are already in the basket can be set to a quantity of 0 to remove them.
       if (menuItemQuantity > 0) {
-        modalQuantity.setAttribute("min", "0");
+        modalQuantity.setAttribute('min', '0');
       } else {
-        modalQuantity.setAttribute("min", "1");
+        modalQuantity.setAttribute('min', '1');
       }
 
       // Change form action to item specific value.
