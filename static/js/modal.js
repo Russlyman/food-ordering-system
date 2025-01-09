@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let menuItemPrice = 0;
   let menuItemQuantity = 0;
-  const modalTotal = document.querySelector('.modal-total');
+  const modalSubmit = document.querySelector('.modal-submit');
   const modalQuantity = document.querySelector('.modal-quantity');
 
   // Calculates item total after considering quantity.
@@ -28,8 +28,24 @@ document.addEventListener('DOMContentLoaded', function () {
       modalQuantity.value = 10;
     }
 
+    const quantityPrice = (menuItemPrice * modalQuantity.value).toFixed(2)
+
+    modalSubmit.classList.remove("btn-danger")
+    modalSubmit.classList.remove("btn-warning")
+    modalSubmit.classList.remove("btn-success")
+
+    if (modalQuantity.value == 0) {
+      modalSubmit.innerText = "Remove from basket";
+      modalSubmit.classList.add("btn-danger")
+    } else if (menuItemQuantity > 0) {
+      modalSubmit.innerText = `£${quantityPrice} - Modify basket`;
+      modalSubmit.classList.add("btn-warning")
+    } else {
+      modalSubmit.innerText = `£${quantityPrice} - Add to basket`;
+      modalSubmit.classList.add("btn-success")
+    }
+
     // 2dp please :)
-    modalTotal.innerText = (menuItemPrice * modalQuantity.value).toFixed(2);
   }
 
   // Recalculate item total when user changes quantity.
