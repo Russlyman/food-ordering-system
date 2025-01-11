@@ -10,10 +10,26 @@ def menu_list(request):
     # Gets all categories that have items. gt = greater than
     categories = Category.objects.annotate(num_items=Count('items')).filter(num_items__gt=0).prefetch_related('items')
 
+    # Fetch the current order (assuming ID=1 for simplicity)
+    current_order = Order.objects.prefetch_related('items__item').filter(id=1, user=request.user).first()
+
+    # Build a dictionary of item quantities
+    item_quantities = {}
+    if current_order:
+        item_quantities = {
+            item_order.item.id: item_order.quantity
+            for item_order in current_order.items.all()
+        }
+
+    # Add a "quantity" attribute to each item in each category
+    for category in categories:
+        for item in category.items.all():
+            item.quantity = item_quantities.get(item.id, 0)
+
     return render(
         request,
         "menu/menu_list.html",
-        {"categories": categories, "currency_symbol": "£"},
+        {"categories": categories, "item_quantities": item_quantities, "currency_symbol": "£"},
     )
 
 def basket_quantity(request, item_id):
