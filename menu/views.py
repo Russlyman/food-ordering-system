@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 def menu_list(request):
     # Gets all categories that have items. gt = greater than
-    categories = Category.objects.annotate(num_items=Count('items')).filter(num_items__gt=0)
+    categories = Category.objects.annotate(num_items=Count('items')).filter(num_items__gt=0).prefetch_related('items')
 
     return render(
         request,
