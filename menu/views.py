@@ -51,7 +51,12 @@ def basket_quantity(request, item_id):
         itemorder = ItemOrder.objects.get(order=order, item=item)
 
         itemorder.quantity = quantity_form.cleaned_data['quantity']
-        
+
+        # Remove items that are set to a quantity of zero.
+        if itemorder.quantity == 0:
+            itemorder.delete()
+            return HttpResponseRedirect(reverse('home'))
+
         itemorder.save()
     # Add new basket item to the db.
     except ItemOrder.DoesNotExist:
@@ -59,6 +64,10 @@ def basket_quantity(request, item_id):
         
         itemorder.item = item
         itemorder.order = order
+
+        # Reject new items that have a quantity of zero.
+        if itemorder.quantity == 0:
+            return HttpResponse(status=400)
 
         itemorder.save()
 

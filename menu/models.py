@@ -47,7 +47,7 @@ class ItemOrder(models.Model):
     quantity = models.IntegerField(
         default=1,
         validators=[
-            MinValueValidator(1),
+            MinValueValidator(0),
             MaxValueValidator(10),
         ],
     )
