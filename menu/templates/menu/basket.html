@@ -17,7 +17,7 @@
         <label for="card">Card</label>
         <input type="submit" value="Place Order" class="d-block mb-4">
       </form>
-      <span class="h5">Total: {{ currency_symbol}}{{ total }}</span>
+      <span class="h5">Total: {{ currency_symbol }}{{ total }}</span>
     </div>
     <div class="col-md-6">
       {% if items %}
@@ -30,7 +30,7 @@
         <div class="d-flex align-items-center justify-content-between p-3 border bg-light">
           <span>{{ item.quantity }}x {{ item.name }}</span>
           <div class="d-flex align-items-center justify-content-between gap-3">
-            <span>{{ currency_symbol}}{{ item.price }}</span>
+            <span>{{ currency_symbol }}{{ item.price }}</span>
             <form method="POST" action="{% url 'delete_item' item.id %}">
               <button type="submit" class="bg-transparent border-0"><i class="fa-solid fa-xmark h3 mb-0"></i></button>
               {% csrf_token %}
