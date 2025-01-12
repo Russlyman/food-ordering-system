@@ -2,3 +2,7 @@
 .rounded-pill {
   font-size: 10px;
 }
+
+.item {
+  cursor: pointer;
+}
