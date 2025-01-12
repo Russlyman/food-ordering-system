@@ -15,11 +15,14 @@ def menu_list(request):
 
     # Build a dictionary of item quantities
     item_quantities = {}
+    basket_count = 0
+
     if current_order:
         item_quantities = {
             item_order.item.id: item_order.quantity
             for item_order in current_order.items.all()
         }
+        basket_count = sum(item_quantities.values())
 
     # Add a "quantity" attribute to each item in each category
     for category in categories:
@@ -29,7 +32,7 @@ def menu_list(request):
     return render(
         request,
         "menu/menu_list.html",
-        {"categories": categories, "item_quantities": item_quantities, "currency_symbol": "£"},
+        {"categories": categories, "item_quantities": item_quantities, "currency_symbol": "£", "basket_count": basket_count,},
     )
 
 def basket_quantity(request, item_id):
