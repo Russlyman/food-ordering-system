@@ -14,15 +14,17 @@
       </div>
     </div>
     <div class="col-lg-9">
-      <div class="col-12 d-flex align-items-center mb-3 gap-2">
-        <input type="text" class="search-box flex-grow-1">
-        <a href="{% url 'home' %}">
-          <i class="fa-solid fa-cart-shopping h1 mb-0 position-relative">
-            {% if basket_count > 0 %}
-            <span class="badge rounded-pill text-bg-danger position-absolute bottom-0 end-0">{{ basket_count }}</span>
-            {% endif %}
-          </i>
-        </a>
+      <div class="row">
+        <div class="col-12 d-flex align-items-center mb-3 gap-2">
+          <input type="text" class="search-box flex-grow-1">
+          <a href="{% url 'basket' %}">
+            <i class="fa-solid fa-cart-shopping h1 mb-0 position-relative">
+              {% if basket_count > 0 %}
+              <span class="badge rounded-pill text-bg-danger position-absolute bottom-0 end-0">{{ basket_count }}</span>
+              {% endif %}
+            </i>
+          </a>
+        </div>
       </div>
       <div class="row gy-4">
         {% for category in categories %}

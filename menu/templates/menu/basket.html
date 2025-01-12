@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 border p-3">
+      <form action="">
+        <label for="name" class="d-block">Name</label>
+        <input id="name" name="name" type="text" class="d-block mb-2 w-100">
+        <label for="phone" class="d-block">Phone Number</label>
+        <input id="phone" name="phone" type="tel" class="d-block mb-2 w-100">
+        <span class="d-block mb-2">Payment Method</span>
+        <input type="radio" id="cash" name="payment_method" value="Cash">
+        <label for="cash">Cash</label><br>
+        <input type="radio" id="card" name="payment_method" value="Card" class="mb-4">
+        <label for="card">Card</label>
+        <input type="submit" value="Place Order" class="d-block mb-4">
+      </form>
+      <span class="h5">Total: {{ currency_symbol}}{{ total }}</span>
+    </div>
+    <div class="col-md-6">
+      {% if items %}
+      <h1>Your Basket</h1>
+      {% else %}
+      <h1>No items in basket!</h1>
+      {% endif %}
+      {% for item in items %}
+      <div class="row mb-3">
+        <div class="d-flex align-items-center justify-content-between p-3 border bg-light">
+          <span>{{ item.quantity }}x {{ item.name }}</span>
+          <div class="d-flex align-items-center justify-content-between gap-3">
+            <span>{{ currency_symbol}}{{ item.price }}</span>
+            <form method="POST" action="{% url 'delete_item' item.id %}">
+              <button type="submit" class="bg-transparent border-0"><i class="fa-solid fa-xmark h3 mb-0"></i></button>
+              {% csrf_token %}
+            </form>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
