@@ -59,7 +59,7 @@ def basket_quantity(request, item_id):
 
     # Reject unauthorised users.
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("account_login")) 
+        return HttpResponseRedirect(reverse("account_login"))
 
     # Get item from database.
     order = Order.objects.get(id=request.session["order"])
@@ -102,14 +102,14 @@ def basket(request):
     # Reject unauthorised users.
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("account_login"))
-    
+
     if request.method == "POST":
         basket_form = BasketForm(data=request.POST)
 
         # Kill invalid forms
         if not basket_form.is_valid():
             return HttpResponse(status=400)
-        
+
         # Get current order.
         order = Order.objects.filter(id=request.session["order"]).first()
 
@@ -123,7 +123,9 @@ def basket(request):
         order.placed = True
         order.save()
 
-    item_orders = ItemOrder.objects.filter(order_id=request.session["order"]).select_related("item")
+    item_orders = ItemOrder.objects.filter(
+        order_id=request.session["order"]
+    ).select_related("item")
     items = [
         {
             "name": item_order.item.name,
@@ -137,13 +139,24 @@ def basket(request):
 
     total = sum(item["price"] for item in items)
 
-    return render(request, "menu/basket.html", {"items": items, "total": total, "currency_symbol": "£",})
+    return render(
+        request,
+        "menu/basket.html",
+        {
+            "items": items,
+            "total": total,
+            "currency_symbol": "£",
+        },
+    )
+
 
 def delete_item(request, item_id):
     # Reject unauthorised users.
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("account_login")) 
-    
-    item = get_object_or_404(ItemOrder, order__id=request.session["order"], item__id=item_id)
+        return HttpResponseRedirect(reverse("account_login"))
+
+    item = get_object_or_404(
+        ItemOrder, order__id=request.session["order"], item__id=item_id
+    )
     item.delete()
     return HttpResponseRedirect(reverse("basket"))

@@ -56,7 +56,7 @@ class ItemOrder(models.Model):
     class Meta:
         verbose_name_plural = "ItemOrders"
         constraints = [
-            models.UniqueConstraint(fields=['order', 'item'], name='unique_order_item')
+            models.UniqueConstraint(fields=["order", "item"], name="unique_order_item")
         ]
 
     def __str__(self):
