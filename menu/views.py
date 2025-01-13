@@ -18,7 +18,7 @@ def menu_list(request):
     # Fetch the current order (assuming ID=1 for simplicity)
     current_order = (
         Order.objects.prefetch_related("items__item")
-        .filter(id=1, user=request.user)
+        .filter(id=1, user=1)
         .first()
     )
 
