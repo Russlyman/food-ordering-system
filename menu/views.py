@@ -123,6 +123,8 @@ def basket(request):
         order.placed = True
         order.save()
 
+        return HttpResponseRedirect(reverse("home"))
+
     item_orders = ItemOrder.objects.filter(
         order_id=request.session["order"]
     ).select_related("item")
