@@ -5,17 +5,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 border p-3">
-      <form action="">
-        <label for="name" class="d-block">Name</label>
-        <input id="name" name="name" type="text" class="d-block mb-2 w-100">
-        <label for="phone" class="d-block">Phone Number</label>
-        <input id="phone" name="phone" type="tel" class="d-block mb-2 w-100">
-        <span class="d-block mb-2">Payment Method</span>
-        <input type="radio" id="cash" name="payment_method" value="Cash">
-        <label for="cash">Cash</label><br>
-        <input type="radio" id="card" name="payment_method" value="Card" class="mb-4">
-        <label for="card">Card</label>
+      <form method="POST">
+        <span class="d-block mb-2">Order Type</span>
+        <input type="radio" id="collection" name="order_type" value="0" checked required>
+        <label for="collection">Collection</label><br>
+        <input type="radio" id="delivery" name="order_type" value="1" class="mb-4">
+        <label for="delivery">Delivery</label>
+        <label for="requirements" class="d-block">Special Requirements</label>
+        <textarea id="requirements" name="requirements" class="w-100 mb-4" maxlength="150"></textarea>
         <input type="submit" value="Place Order" class="d-block mb-4">
+        {% csrf_token %}
       </form>
       <span class="h5">Total: {{ currency_symbol }}{{ total }}</span>
     </div>

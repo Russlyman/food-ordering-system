@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
 from django.db.models import Count
 from .models import Category, Item, Order, ItemOrder
-from .forms import QuantityForm
+from .forms import QuantityForm, BasketForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 
@@ -101,7 +101,27 @@ def basket_quantity(request, item_id):
 def basket(request):
     # Reject unauthorised users.
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("account_login")) 
+        return HttpResponseRedirect(reverse("account_login"))
+    
+    if request.method == "POST":
+        basket_form = BasketForm(data=request.POST)
+
+        # Kill invalid forms
+        if not basket_form.is_valid():
+            return HttpResponse(status=400)
+        
+        # Get current order.
+        order = Order.objects.filter(id=request.session["order"]).first()
+
+        # Create and set new order object for user.
+        new_order = Order.objects.create(user=request.user, order_type=0)
+        request.session["order"] = new_order.id
+
+        # Place order.
+        order.order_type = basket_form.cleaned_data["order_type"]
+        order.requirements = basket_form.cleaned_data["requirements"]
+        order.placed = True
+        order.save()
 
     item_orders = ItemOrder.objects.filter(order_id=request.session["order"]).select_related("item")
     items = [

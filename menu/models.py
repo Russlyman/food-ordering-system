@@ -35,6 +35,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders")
     placed = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
+    requirements = models.CharField(max_length=150, blank=True)
     order_type = models.IntegerField(choices=ORDER_TYPE, null=True, blank=False)
 
     def __str__(self):
