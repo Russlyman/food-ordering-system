@@ -82,7 +82,16 @@ The project currently utilises the base Bootstrap styling so there is no concern
 
 ## Testing and Validation
 
-### Testing Results
+|Test|Pass|
+|-|-|
+|Can Login|X|
+|Can Logout|X|
+|Can Register|X|
+|Can add Item to basket|X|
+|Can modify item quantity|X|
+|Can delete item from basket|X|
+
+### Reponsiveness
 As can be observed below, the website behaves responsively depending on the screen size and as my wireframe diagrams intended.
 ![Home Page on Desktop](docs_images/home-full.png)
 ![Home Page on Tablet](docs_images/home-tab.png)
@@ -103,21 +112,11 @@ I did a PageSpeed test on the website which is essentially a browser version of 
 #### W3C Validator CSS
 ![W3C Validator CSS Result](docs_images/w3c-css-validator.png)
 
-## Reflection on Development Process
-
-### Successes
-Effective use of AI tools, including GitHub Copilot and DALL-E, and how they contributed to the development process.
-
-### Challenges
-Describe any challenges faced when integrating AI-generated content and how they were addressed.
-
-### Final Thoughts
-Provide any additional insights gained during the project and thoughts on the overall process.  
-**Guidance:** Begin drafting reflections during Phase 1 and update throughout the project. Finalize this section after Phase 4. Highlight successes and challenges, particularly regarding the use of AI tools, and provide overall insights into the project.
-
 ## Code Attribution
 - Bootstrap 5.3 Docs for various components
 
 ## Future Improvements
-Briefly discuss potential future improvements or features that could be added to the project.  
-**Guidance:** Reflect on potential enhancements that could be made to the project after Phase 4: Final Testing, Debugging & Deployment. These could be Could user story features you didn’t have time to implement or improvements based on testing feedback.
+- Using React and changing the project to serve API endpoints instead of templates.
+- Allow restaurant owners to CRUD items and categories without having to access admin panel.
+- Style the project.
+- Implement remaining user stories.
