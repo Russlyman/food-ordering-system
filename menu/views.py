@@ -15,11 +15,11 @@ def menu_list(request):
         .prefetch_related("items")
     )
 
-    # Fetch the current order (assuming ID=1 for simplicity)
+    # Get current order if user is authenticated
     if request.user.is_authenticated:
         current_order = (
             Order.objects.prefetch_related("items__item")
-            .filter(id=1)
+            .filter(id=request.session["order"])
             .first()
         )
     else:
@@ -61,9 +61,8 @@ def basket_quantity(request, item_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("account_login")) 
 
-    # FIX: Active order should not be hard coded and should be unique for each user.
     # Get item from database.
-    order = Order.objects.get(id=1)
+    order = Order.objects.get(id=request.session["order"])
     item = get_object_or_404(Item, id=item_id)
 
     # Kill invalid forms
@@ -104,7 +103,7 @@ def basket(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("account_login")) 
 
-    item_orders = ItemOrder.objects.filter(order_id=1).select_related("item")
+    item_orders = ItemOrder.objects.filter(order_id=request.session["order"]).select_related("item")
     items = [
         {
             "name": item_order.item.name,
@@ -125,6 +124,6 @@ def delete_item(request, item_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("account_login")) 
     
-    item = get_object_or_404(ItemOrder, order__id=1, item__id=item_id)
+    item = get_object_or_404(ItemOrder, order__id=request.session["order"], item__id=item_id)
     item.delete()
     return HttpResponseRedirect(reverse("basket"))

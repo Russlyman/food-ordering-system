@@ -67,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'menu.middleware.SetOrderMiddleware',
 ]
 
 ROOT_URLCONF = 'food_ordering_system.urls'
