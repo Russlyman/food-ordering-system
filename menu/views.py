@@ -16,11 +16,14 @@ def menu_list(request):
     )
 
     # Fetch the current order (assuming ID=1 for simplicity)
-    current_order = (
-        Order.objects.prefetch_related("items__item")
-        .filter(id=1, user=1)
-        .first()
-    )
+    if request.user.is_authenticated:
+        current_order = (
+            Order.objects.prefetch_related("items__item")
+            .filter(id=1)
+            .first()
+        )
+    else:
+        current_order = None
 
     # Build a dictionary of item quantities
     item_quantities = {}
@@ -53,6 +56,10 @@ def menu_list(request):
 def basket_quantity(request, item_id):
     if request.method != "POST":
         return HttpResponse(status=405)
+
+    # Reject unauthorised users.
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("account_login")) 
 
     # FIX: Active order should not be hard coded and should be unique for each user.
     # Get item from database.
@@ -93,6 +100,10 @@ def basket_quantity(request, item_id):
 
 
 def basket(request):
+    # Reject unauthorised users.
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("account_login")) 
+
     item_orders = ItemOrder.objects.filter(order_id=1).select_related("item")
     items = [
         {
@@ -110,6 +121,10 @@ def basket(request):
     return render(request, "menu/basket.html", {"items": items, "total": total, "currency_symbol": "£",})
 
 def delete_item(request, item_id):
+    # Reject unauthorised users.
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("account_login")) 
+    
     item = get_object_or_404(ItemOrder, order__id=1, item__id=item_id)
     item.delete()
     return HttpResponseRedirect(reverse("basket"))

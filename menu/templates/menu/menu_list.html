@@ -17,6 +17,7 @@
       <div class="row">
         <div class="col-12 d-flex align-items-center mb-3 gap-2">
           <input type="text" class="search-box flex-grow-1">
+          {% if user.is_authenticated %}
           <a href="{% url 'basket' %}">
             <i class="fa-solid fa-cart-shopping h1 mb-0 position-relative">
               {% if basket_count > 0 %}
@@ -24,6 +25,7 @@
               {% endif %}
             </i>
           </a>
+          {% endif %}
         </div>
       </div>
       <div class="row gy-4">
@@ -68,11 +70,16 @@
         <p>Price: {{ currency_symbol }}<span class="modal-price">Item Price Value</span></p>
         <p class="modal-description-wrapper d-none">Description: <span class="modal-description">Item Description Value</span></p>
       </div>
-      <form id="quantityForm" class="modal-footer d-flex justify-content-between" method="POST">
-        <input name="quantity" class="modal-quantity" type="number" min="1" max="10" value="1">
-        <button type="submit" class="btn btn-success modal-submit">Add Item</button>
-        {% csrf_token %}
-      </form>
+      <div class="modal-footer d-block">
+        {% if not user.is_authenticated %}
+        <p class="text-center text-danger">Please login to add items to your basket!</p>
+        {% endif %}
+        <form id="quantityForm" class="{% if user.is_authenticated %}d-flex{% else %}d-none{% endif %} justify-content-between" method="POST">
+          <input name="quantity" class="modal-quantity" type="number" min="1" max="10" value="1">
+          <button type="submit" class="btn btn-success modal-submit">Add Item</button>
+          {% csrf_token %}
+        </form>
+      </div>
     </div>
   </div>
 </div>
