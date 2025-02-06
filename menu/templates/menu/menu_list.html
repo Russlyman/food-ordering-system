@@ -16,11 +16,11 @@
     <div class="col-lg-9">
       <div class="row sticky-top">
         <div class="col-12">
-          <div class="d-flex align-items-center mb-3 gap-2 bg-light rounded-3 border">
+          <div class="d-flex align-items-center mb-3 gap-2 bg-light rounded-3 border p-3">
             <input type="text" class="search-box flex-grow-1 rounded-3 p-3 border border-black" placeholder="Type to search for items" aria-label="Input field for searching menu items">
             {% if user.is_authenticated %}
             <a href="{% url 'basket' %}">
-              <i class="fa-solid fa-cart-shopping h1 mb-0 position-relative me-2 text-dark">
+              <i class="fa-solid fa-cart-shopping h1 mb-0 position-relative text-dark">
                 {% if basket_count > 0 %}
                 <span class="badge rounded-pill text-bg-danger position-absolute bottom-0 end-0">{{ basket_count }}</span>
                 {% endif %}
@@ -33,25 +33,27 @@
       <div class="row gy-4">
         {% for category in categories %}
         <div class="col-12">
-          <h3 class="ms-3" id="{{ category.id }}">{{ category.name }}</h3>
-          <div class="row g-2 menu-category">
-            {% for item in category.items.all %}
-            <div class="col-sm-6">
-              <div 
-                class="p-3 border bg-light d-flex justify-content-between item h-100 rounded-3"
-                data-bs-toggle="modal"
-                data-bs-target="#itemInfoModal"
-                data-item-description="{{ item.description }}"
-                data-item-price="{{ item.price }}"
-                data-item-name="{{ item.name }}"
-                data-item-quantity="{{ item.quantity }}"
-                data-item-image="{{ item.image.url }}"
-                data-item-id="{{ item.id }}">
-                  <span>{{ item.name }}</span>
-                  <span>{{ currency_symbol }}{{ item.price }}</span>
+          <div class="bg-light p-3 rounded-3 border">
+            <h3 class="ms-3 mb-4" id="{{ category.id }}">{{ category.name }}</h3>
+            <div class="row g-2 menu-category">
+              {% for item in category.items.all %}
+              <div class="col-sm-6">
+                <div 
+                  class="p-3 border bg-light d-flex justify-content-between item h-100 rounded-3"
+                  data-bs-toggle="modal"
+                  data-bs-target="#itemInfoModal"
+                  data-item-description="{{ item.description }}"
+                  data-item-price="{{ item.price }}"
+                  data-item-name="{{ item.name }}"
+                  data-item-quantity="{{ item.quantity }}"
+                  data-item-image="{{ item.image.url }}"
+                  data-item-id="{{ item.id }}">
+                    <span>{{ item.name }}</span>
+                    <span>{{ currency_symbol }}{{ item.price }}</span>
+                </div>
               </div>
+              {% endfor %}
             </div>
-            {% endfor %}
           </div>
         </div>
         {% endfor %}
