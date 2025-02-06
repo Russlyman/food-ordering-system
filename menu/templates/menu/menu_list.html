@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3 d-none d-lg-block">
-      <div class="p-3 border bg-light sticky-top rounded-3">
+      <div class="p-3 border bg-light-subtle sticky-top rounded-3">
         <h2>Categories</h2>
         <ul class="list-unstyled">
           {% for category in categories %}
@@ -16,7 +16,7 @@
     <div class="col-lg-9">
       <div class="row sticky-top">
         <div class="col-12">
-          <div class="d-flex align-items-center mb-3 gap-2 bg-light rounded-3 border p-3">
+          <div class="d-flex align-items-center mb-3 gap-2 bg-light-subtle rounded-3 border p-3">
             <input type="text" class="search-box flex-grow-1 rounded-3 p-3 border border-black" placeholder="Type to search for items" aria-label="Input field for searching menu items">
             {% if user.is_authenticated %}
             <a href="{% url 'basket' %}">
@@ -39,7 +39,7 @@
               {% for item in category.items.all %}
               <div class="col-sm-6">
                 <div 
-                  class="p-3 border bg-light d-flex justify-content-between item h-100 rounded-3"
+                  class="p-3 border bg-light-subtle d-flex justify-content-between item h-100 rounded-3 shadow-sm"
                   data-bs-toggle="modal"
                   data-bs-target="#itemInfoModal"
                   data-item-description="{{ item.description }}"

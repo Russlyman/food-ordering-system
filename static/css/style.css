@@ -29,3 +29,7 @@ body::before {
 .item {
   cursor: pointer;
 }
+
+.bg-light {
+  background-color: #e9ecef !important;
+}
