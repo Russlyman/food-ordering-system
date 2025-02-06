@@ -1,4 +1,8 @@
 /* Custom CSS Here */
+html {
+  scroll-padding-top: 70px;
+}
+
 .rounded-pill {
   font-size: 10px;
 }
