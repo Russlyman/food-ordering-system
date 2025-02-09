@@ -31,9 +31,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-russlyman-foodorderings-e1g3n5z55mu.ws.codeinstitute-ide.net', 'rje-food-ordering-system-e7aa385812ff.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['rje-food-ordering-system-e7aa385812ff.herokuapp.com', 'localhost']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com', 'http://localhost']
+CSRF_TRUSTED_ORIGINS = ['https://*.herokuapp.com', 'http://localhost']
 
 # Application definition
 
