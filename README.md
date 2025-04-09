@@ -7,6 +7,71 @@ The primary function of this project is to allow a takeaway restaurant to accept
 
 This system has many advantages over the more traditional method of taking orders over the phone which can be susceptible to miscommunication, the inability to take multiple orders and once and the lack of being able to take secure payment.
 
+### Deployment (For local development on Ubuntu)
+
+Prerequisites: Python 3
+
+1. Clone the repository
+    ```bash
+    git clone https://github.com/Russlyman/food-ordering-system
+    ```
+
+2. Change to repository directory
+    ```bash
+    cd food-ordering-system
+    ```
+
+3. Create virtual environment
+    ```bash
+    python3 -m venv .venv
+    ```
+
+4. Activate virtual environment
+    ```bash
+    source .venv/bin/activate
+    ```
+
+5. Install project requirements
+    ```bash
+    pip3 install -r requirements.txt
+    ```
+
+6. Create an env.py file
+    ```bash
+    touch env.py
+    ```
+
+7. Edit env.py and paste template
+    ```python
+    import os
+
+    os.environ["DATABASE_URL"] = "CHANGE_ME"
+    os.environ["SECRET_KEY"] = "CHANGE_ME"
+    os.environ["CLOUDINARY_URL"] = "CHANGE_ME"
+    ```
+
+8. Generate a secret key at [Djcrety](https://djecrety.ir/) and use for **SECRET_KEY**
+
+9. Get your [Cloudinary URL](https://console.cloudinary.com/settings/api-keys) and use for **CLOUDINARY_URL**
+
+10. Get database connection string from [CI-Dbs](https://dbs.ci-dbs.net/) or from another PostgreSQL server and use for **DATABASE_URL**
+
+11. Save env.py
+
+12. Apply migrations to DB.
+    ```bash
+    python3 manage.py migrate
+    ```
+
+13. Create an admin user
+    ```bash
+    python3 manage.py createsuperuser 
+    ```
+
+14. Start server
+    ```bash
+    python3 manage.py runserver 
+    ```
 
 ### Target Audience
 This project aims to cater to owners of small—to medium-sized takeaway restaurants who are not currently taking orders over the Internet or using a mainstream app and are looking to reduce costs or have an existing solution that does not suffice.
